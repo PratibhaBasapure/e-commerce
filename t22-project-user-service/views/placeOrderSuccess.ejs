@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<style>
+    .table {
+        width: 70% !important
+    }
+
+    .display-4 {
+        text-align: center;
+    }
+</style>
+
+<body>
+<%- include("headerLoggedIn");-%>
+
+<div>
+    <div class="alert-success">Hello <%= success %>, your order has been successfully placed.</div>
+</div>
+
+<div align="center">
+    <br>
+    <h1>You can view your orders in Order History</h1>
+    <br>
+    <br>
+    <h5>Happy Shopping!</h5>
+    <br>
+</div>
+
+
+</div>
+</body>
+
+</html>

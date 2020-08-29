@@ -1,0 +1,11 @@
+{
+	"AWSEBDockerrunVersion": "1",
+	"Image":{
+		"Name": "ahsankamal/item-service"
+	},
+	"Ports":[
+		{
+		"ContainerPort":3000
+		}
+	]
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Customer portal</title>
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
+<style>
+  .table{
+    width: 70% !important
+  }
+  .display-4{
+    text-align: center;
+  }
+</style>
+  <body>
+    <%- include("header"); -%>
+	<div class="registration-form">
+		<h1 class="display-4">User login</h1>
+		<form method="post" action="/login" ngNativeValidate>
+			<div class="form-group">
+				<label for="title">Email id</label>
+				<input type="text" name="email" class="form-control" min="1" required>
+			</div>
+			<div class="form-group">
+				<label for="title">Password</label>
+				<input type="password" name="password" min="1" class="form-control" required>
+			</div>
+			<label for="topic">Security Question:</label>
+			<select id="securityQuestion" name="securityQuestion" class="form-control" required>
+				<option value="1">Which the first school you attended?</option>
+				<option value="2">What is your mother's maiden name?</option>
+				<option value="3">What is your frequent flyer number?</option>
+			</select>
+			<br>
+			<div class="form-group">
+				<label for="title">Security Answer</label>
+				<input type="password" name="securityAnswer" min="1" class="form-control" required>
+			</div>
+			<br>
+			<input type="submit" value="Login" class="btn btn-primary">
+		</form>
+	</div>
+</body>
+
+</html>

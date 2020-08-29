@@ -1,0 +1,15 @@
+service: user-wallet-check
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  memorySize: 256
+  stage: production
+  timeout: 30
+
+functions:
+  app:
+    handler: lambda.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'

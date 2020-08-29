@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Customer portal</title>
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <style>
+        .registration-form {
+            width: 300px;
+            margin: 0 auto;
+            font-family: Tahoma, Geneva, sans-serif;
+        }
+
+        .alert-success {
+            color: #034e00;
+        }
+
+        .alert-failure {
+            color: #ca0000;
+        }
+
+        .registration-form h1 {
+            text-align: center;
+            color: #4d4d4d;
+            font-size: 24px;
+            padding: 20px 0 20px 0;
+        }
+
+        .registration-form input[type="password"],
+        .registration-form input[type="text"],
+        .registration-form input[type="email"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #dddddd;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        .registration-form input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: #2e4e6d;
+            border: 0;
+            box-sizing: border-box;
+            cursor: pointer;
+            font-weight: bold;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+<%- include("headerLoggedIn");-%>
+    <div class="registration-form">
+        <h1 class="display-4">Hello,
+            <% amount.forEach(function(j){ %>
+                <%= j.name %>
+            <% }) %></h1>
+                <br>
+    <form method="post" action="placeOrder" >
+            <div class="form-group" align="center">
+                <label for="title">Your available Wallet Balance is:</label>
+                <br />
+                    <% amount.forEach(function(j){ %>
+                    <%= j.amount %>
+                    <% }) %> $
+            </div>
+        </form>
+    </div>
+    <script>
+        $(document).ready(function () {
+            // $("#quantity").on('input', '.txtCal', function () {
+
+
+            //     $("#myTable .txtCal").each(function () {
+            //         var get_textbox_value = $(this).val();
+            //         if ($.isNumeric(get_textbox_value)) {
+            //             calculated_total_sum += parseFloat(get_textbox_value);
+            //         }
+            //     });
+
+            // });
+            $("quantity").change(function () {
+                $("#quantity").on("input", function () {
+                    var calculated_total_sum = 0;
+                    var get_textbox_value = $("#quantity").val();
+                    var str = "";
+                    $("select option:selected").each(function () {
+                        str += $(this).val() + " ";
+                    });
+                    $("#total_sum_value").html(get_textbox_value + "hh" + str);
+                })
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Customer portal</title>
+  <!-- Viewport mobile tag for sensible mobile support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<style>
+  .table {
+    width: 75% !important
+  }
+
+  .display-4 {
+    text-align: center;
+  }
+
+  .form-control {
+    width: auto;
+  }
+</style>
+
+<body>
+<%- include("headerLoggedIn");-%>
+  <h1 class="display-4">Available Products</h1>
+  <div class="table-responsive">
+    <table class="table cart  table-striped table-hover mx-auto w-auto">
+      <thead>
+        <tr>
+          <th class="cart-product-name">Product Id</th>
+          <th class="cart-product-name">Product</th>
+          <th class="cart-product-price">Available Quantity</th>
+          <th class="cart-product-price">Unit Price</th>
+          <!-- <th class="cart-product-quantity">Quantity</th>
+          <th class="cart-product-subtotal">Total</th> -->
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% items.forEach(function(j){ %>
+        <tr>
+          <td id="itemId" name="itemId" class="cart-product-name">
+            <%= j.itemId %>
+          </td>
+          <td id="item" name="item" class="cart-product-name">
+            <%= j.itemName %>
+          </td>
+
+          <td>
+            <span id="qty" name="qty"><%= j.qty %></span>
+          </td>
+
+          <td class="cart-product-price">
+            <span id="price" name="price" class="amount"><%= j.price %></span>
+          </td>
+
+          <!-- <td class="cart-product-quantity">
+            <div class="quantity clearfix">
+              <input type="button" value="-" class="minus" field="quantity">
+              <input type="number" id="quantity" name="quantity"  min="1" value="0" class="qty" />
+              <input type="button" value="+" class="plus" field="quantity">
+            </div>
+          </td>
+
+          <td class="cart-product-subtotal">
+            <span id="total" name="total" class="total_amount">0</span>
+          </td>
+          <td>
+            <form class="d-inline" action="/buy" method="POST">
+              <input type="hidden" name="items" value="<%= JSON.stringify(items) %>">
+              <input type="hidden" name="itemId" value="<%= j.itemId%>">
+              <input type="hidden" name="quantity" value="<%= j.quantity%>">
+              <input type="submit" class="btn btn-primary" value="Buy">
+            </form>
+          </td> -->
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    function calculate(obj) {
+      var price = parseFloat($(obj).parent().parent().parent().find('.amount').text()) || 0;
+      var quantity = parseInt($(obj).parent().find('.qty').val());
+      var total = price * quantity;
+
+      $(obj).parent().parent().parent().find('.total_amount').text(total);;
+    }
+
+    function changeQuantity(num, obj) {
+      //$("#quantity").val( parseInt($("#quantity").val())+num);
+      $(obj).parent().find('.qty').val(parseInt($(obj).parent().find('.qty').val()) + num);
+    }
+
+    $().ready(function () {
+      //calculate();
+      $(".minus").click(function () {
+        changeQuantity(-1, this);
+        calculate(this);
+      });
+      $(".plus").click(function () {
+        changeQuantity(1, this);
+        calculate(this);
+      });
+
+      //$("#quantity").keyup(function(e){
+      $(".qty").keyup(function (e) {
+        if (e.keyCode == 38) changeQuantity(1, this);
+        if (e.keyCode == 40) changeQuantity(-1, this);
+        calculate(this);
+      });
+
+      /*var quantity = document.getElementById("quantity");
+      quantity.addEventListener("input", function(e) {
+          calculate();
+      });
+
+      $('#total').each(function() {
+          $(this).before("Rp ")
+      });*/
+    });
+  </script>
+</body>
+
+</html>

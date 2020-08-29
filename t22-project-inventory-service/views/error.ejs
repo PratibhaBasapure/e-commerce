@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Items Managment</title>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+</head>
+
+<body>
+    <%- include("header"); -%>
+    <div class="registration-form">
+        <h1>Items Management</h1>
+        <div>
+            <% if (locals.error) { %>
+            <div class="alert-failure"><%= error %></div>
+                <br/>
+                <form action="/" method="GET">
+                    <input type="submit" class="btn btn-primary" value="View All Items">
+                </form>
+            <% } %>
+        </div>
+    </div>
+</body>
+
+</html>

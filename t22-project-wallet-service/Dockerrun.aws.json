@@ -1,0 +1,11 @@
+{
+ "AWSEBDockerrunVersion": "1",
+ "Image":{
+ "Name": "monilpanchal14/wallet-svc"
+ },
+ "Ports":[
+ {
+ "ContainerPort":8080
+ }
+ ]
+}

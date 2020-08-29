@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Customer portal</title>
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
+<style>
+  .table{
+    width: 70% !important
+  }
+  .display-4{
+    text-align: center;
+  }
+</style>
+  <body>
+    <%- include("header"); -%>
+    <h4 class="display-4">Jobs list with part and quantity</h4>
+
+    <br>
+
+    <% if(typeof orderFulfilled !== 'undefined') {%>
+      <% if(orderFulfilled===true) { %>
+        <div  class="alert-success" style="text-align:center;">
+        <h4>Order successfully fulfilled!!</h4>
+      </div>
+      <% } else{ %>
+          <% if(message) {%>
+            <div class="alert-failure" style="text-align:center;">
+            <h4><%= message %></h4>
+          <% } else {%>
+            <h4>Something went wrong! Order was not fulfilled!!</h4>
+          <% } %>
+            </div>
+      <% } %>
+    <% } %>
+    <div class="table-responsive">
+    <table class="table table-striped table-hover mx-auto w-auto">
+        <thead>
+            <tr>
+                <th>Job Name</th>
+                <th>Part ID</th>
+                <th>Part Name</th>
+                <th>Quantity</th>
+                <th>Quantity in Hand</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% jobs.forEach(function(j){ %>
+            <tr>
+                <td><%= j.jobName %></td>
+                <td><%= j.partId %></td>
+                <td><%= j.partName %></td>
+                <td><%= j.qty %></td>
+                <td><%= j.qoh %></td>
+
+                <td>
+                    <!-- <form class="d-inline" action="/viewJob" method="post">
+                        <input type="hidden" name="jobs" value="<%= JSON.stringify(jobs) %>">
+                        <input type="submit" value="View job" class="btn btn-primary">
+                    </form> -->
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+  </div>
+  <div class="display-4">
+    <form class="d-inline" action="/fulfillOrder" method="post">
+      <input type="hidden" name="jobs" value="<%= JSON.stringify(jobs) %>">
+      <input type="submit" value="Fulfill Order" class="btn btn-primary">
+    </form>
+  </div>
+
+  </body>
+</html>
